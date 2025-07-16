@@ -1,0 +1,365 @@
+/* Custom CSS for additional styling and animations */
+
+/* Smooth scrolling for all elements */
+* {
+    scroll-behavior: smooth;
+}
+
+/* Custom gradient background */
+.gradient-bg {
+    background: linear-gradient(135deg, #1e3a8a 0%, #1f2937 50%, #111827 100%);
+}
+
+/* Enhanced animations */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.float-animation {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Glowing effect for buttons */
+.glow-on-hover {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.glow-on-hover:hover {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1f2937;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #3b82f6;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #2563eb;
+}
+
+/* Loading animation for images */
+.image-loading {
+    background: linear-gradient(90deg, #374151 25%, transparent 37%, #374151 63%);
+    background-size: 400% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Enhanced card hover effects */
+.card-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+/* Typing animation */
+.typing-animation {
+    overflow: hidden;
+    border-right: 2px solid #3b82f6;
+    white-space: nowrap;
+    margin: 0 auto;
+    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blink-caret {
+    from, to {
+        border-color: transparent;
+    }
+    50% {
+        border-color: #3b82f6;
+    }
+}
+
+/* Progress bar animation */
+.progress-bar {
+    animation: progressLoad 2s ease-in-out;
+}
+
+@keyframes progressLoad {
+    0% {
+        width: 0%;
+    }
+}
+
+/* Fade in from bottom */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
+}
+
+.fade-in-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stagger animation delay */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+    .mobile-padding {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    .mobile-text-center {
+        text-align: center;
+    }
+    
+    .mobile-full-width {
+        width: 100%;
+    }
+}
+
+/* Dark mode enhancements */
+.dark-mode {
+    color-scheme: dark;
+}
+
+/* Focus styles for accessibility */
+button:focus,
+input:focus,
+textarea:focus,
+a:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+    .no-print {
+        display: none;
+    }
+    
+    body {
+        background: white;
+        color: black;
+    }
+}
+
+/* Interactive Skills Section Styles */
+.skills-container {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 1rem;
+    min-height: 400px;
+    perspective: 1000px;
+}
+
+.skill-card {
+    background: #1f2937;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid transparent;
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 180px;
+    transform: scale(0.9);
+    opacity: 0.7;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.skill-card:hover {
+    transform: scale(0.95);
+    opacity: 0.85;
+    border-color: rgba(59, 130, 246, 0.5);
+}
+
+/* Active card (center card) */
+.skill-card.active {
+    flex: 1;
+    max-width: 400px;
+    transform: scale(1);
+    opacity: 1;
+    border-color: #3b82f6;
+    background: #374151;
+    box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.25);
+}
+
+.skill-card.active:hover {
+    transform: scale(1);
+    border-color: #3b82f6;
+}
+
+.skill-card-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.skill-card:not(.active) .skill-card-header {
+    text-align: center;
+    align-items: center;
+}
+
+.skill-card-content {
+    flex: 1;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
+
+.skill-card.active .skill-card-content {
+    opacity: 1;
+    height: auto;
+    transform: translateY(0);
+    transition: all 0.4s ease 0.15s;
+}
+
+/* Progress bar animations */
+.progress-bar {
+    transition: width 0.8s ease-out;
+    width: 0% !important;
+}
+
+.skill-card.active .progress-bar {
+    animation: none;
+}
+
+.skill-card.active.animate-progress .progress-bar:nth-child(2n) {
+    animation: progressLoad 0.8s ease-out 0.2s forwards;
+}
+
+.skill-card.active.animate-progress .progress-bar:nth-child(2n+2) {
+    animation: progressLoad 0.8s ease-out 0.3s forwards;
+}
+
+.skill-card.active.animate-progress .progress-bar:nth-child(2n+4) {
+    animation: progressLoad 0.8s ease-out 0.4s forwards;
+}
+
+.skill-card.active.animate-progress .progress-bar:nth-child(2n+6) {
+    animation: progressLoad 0.8s ease-out 0.5s forwards;
+}
+
+@keyframes progressLoad {
+    from {
+        width: 0%;
+    }
+    to {
+        width: var(--target-width);
+    }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .skills-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .skill-card {
+        width: 100%;
+        max-width: 100%;
+        flex: none;
+    }
+    
+    .skill-card:not(.active) {
+        flex: none;
+        transform: scale(1);
+        opacity: 0.8;
+        min-height: auto;
+    }
+    
+    .skill-card:not(.active) .skill-card-content {
+        opacity: 0.5;
+        height: auto;
+        transform: none;
+    }
+    
+    .skill-card:not(.active) .skill-card-header {
+        text-align: left;
+        justify-content: flex-start;
+    }
+    
+    .skill-card.active {
+        transform: scale(1.02);
+        box-shadow: 0 15px 30px -12px rgba(59, 130, 246, 0.4);
+    }
+}
+
+/* Smooth transitions for all interactive elements */
+.skill-card i {
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* Hover effect for card icons */
+.skill-card:hover i {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+
+.skill-card.active:hover i {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+}
+
+/* Focus styles for accessibility */
+.skill-card:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 4px;
+}
+
+/* Prevent interaction during transitions */
+.skill-card.transitioning {
+    pointer-events: none;
+}
+
+/* Loading state animation */
+.skill-card.loading {
+    pointer-events: none;
+}
+
+.skill-card.loading::after {
+    display: none;
+}
