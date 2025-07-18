@@ -1,503 +1,546 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="night">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>John Doe - Portfolio</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Sebastian Klopper | Lead Developer & Graphics Computing Specialist</title>
+    <meta name="description" content="Final year BSc IT student specializing in graphical computing, optimization, and team leadership. Main lead at TotallySane organization.">
+    
+    <!-- Replace with build CSS in production -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    animation: {
-                        'fade-in': 'fadeIn 0.5s ease-in-out',
-                        'slide-up': 'slideUp 0.5s ease-in-out',
-                    },
-                    keyframes: {
-                        fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' },
-                        },
-                        slideUp: {
-                            '0%': { opacity: '0', transform: 'translateY(30px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="styles.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/three@0.153.0/build/three.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet" type="text/css" />
+    <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
+      }
+    }
+  </script>
 </head>
-<body class="bg-gray-900 text-white">
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full bg-gray-900/90 backdrop-blur-sm z-50 border-b border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <h1 class="text-xl font-bold text-blue-400">John Doe</h1>
+
+<body class="bg-base-200 antialiased text-base-content">
+    <!-- Fixed Navigation Bar -->
+    <nav class="navbar bg-base-100 shadow-lg fixed top-0 z-50 backdrop-blur-sm bg-opacity-95">
+        <div class="navbar-start">
+            <div class="dropdown">
+                <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
+                    </svg>
                 </div>
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="hover:text-blue-400 transition-colors">Home</a>
-                    <a href="#about" class="hover:text-blue-400 transition-colors">About</a>
-                    <a href="#projects" class="hover:text-blue-400 transition-colors">Projects</a>
-                    <a href="#skills" class="hover:text-blue-400 transition-colors">Skills</a>
-                    <a href="#contact" class="hover:text-blue-400 transition-colors">Contact</a>
-                </div>
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white">
-                        <i class="fas fa-bars text-xl"></i>
-                    </button>
-                </div>
+                <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                    <li><a href="#about" class="hover:text-primary">About</a></li>
+                    <li><a href="#experience" class="hover:text-primary">Experience</a></li>
+                    <li><a href="#projects" class="hover:text-primary">Projects</a></li>
+                    <li><a href="#skills" class="hover:text-primary">Skills</a></li>
+                    <li><a href="#playground" class="hover:text-primary">Shaders</a></li>
+                    <li><a href="#contact" class="hover:text-primary">Contact</a></li>
+                </ul>
             </div>
+            <a href="#hero" class="btn btn-ghost text-xl font-bold">Sebastian K.</a>
         </div>
-        
-        <!-- Mobile menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-gray-800 border-t border-gray-700">
-            <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="#home" class="block px-3 py-2 hover:text-blue-400 transition-colors">Home</a>
-                <a href="#about" class="block px-3 py-2 hover:text-blue-400 transition-colors">About</a>
-                <a href="#projects" class="block px-3 py-2 hover:text-blue-400 transition-colors">Projects</a>
-                <a href="#skills" class="block px-3 py-2 hover:text-blue-400 transition-colors">Skills</a>
-                <a href="#contact" class="block px-3 py-2 hover:text-blue-400 transition-colors">Contact</a>
+        <div class="navbar-center hidden lg:flex">
+            <ul class="menu menu-horizontal px-1">
+                <li><a href="#about" class="hover:text-primary transition-colors duration-200">About</a></li>
+                <li><a href="#experience" class="hover:text-primary transition-colors duration-200">Experience</a></li>
+                <li><a href="#projects" class="hover:text-primary transition-colors duration-200">Projects</a></li>
+                <li><a href="#skills" class="hover:text-primary transition-colors duration-200">Skills</a></li>
+                <li><a href="#playground" class="hover:text-primary transition-colors duration-200">Shaders</a></li>
+                <li><a href="#contact" class="hover:text-primary transition-colors duration-200">Contact</a></li>
+            </ul>
+        </div>
+        <div class="navbar-end">
+            <div class="flex gap-2">
+                <a href="https://github.com/TotallySane" class="btn btn-ghost btn-sm" target="_blank" title="TotallySane Organization">
+                    <i class="fab fa-github text-lg"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/sebastian-klopper-1b95272b8/" class="btn btn-ghost btn-sm" target="_blank" title="LinkedIn Profile">
+                    <i class="fab fa-linkedin text-lg"></i>
+                </a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900">
-        <div class="max-w-4xl mx-auto px-4 text-center">
-            <div class="animate-fade-in">
-                <h1 class="text-5xl md:text-7xl font-bold mb-6">
-                    Hi, I'm <span class="text-blue-400">John Doe</span>
-                </h1>
-                <p class="text-xl md:text-2xl text-gray-300 mb-8">
-                    Full Stack Developer & UI/UX Designer
-                </p>
-                <p class="text-lg text-gray-400 mb-12 max-w-2xl mx-auto">
-                    I create beautiful, functional, and user-centered digital experiences that solve real-world problems.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="#projects" class="bg-blue-600 hover:bg-blue-700 px-8 py-3 rounded-lg font-semibold transition-colors">
-                        View My Work
+    <!-- Hero Section with animated planet background -->
+    <header id="hero" class="relative flex items-center justify-center h-screen overflow-hidden pt-16">
+        <canvas id="bg-canvas" class="absolute inset-0 w-full h-full z-0"></canvas>
+        <div class="hero-content z-10 text-center w-full px-4">
+            <div class="glass-effect rounded-3xl p-8 md:p-12 mx-auto max-w-4xl">
+                <h1 class="text-7xl lg:text-8xl font-bold mb-6 hero-gradient">Sebastian Klopper</h1>
+                <p class="subtitle text-2xl lg:text-3xl mb-4 font-light">Lead Developer & Graphics Computing Specialist</p>
+                <p class="text-lg lg:text-xl opacity-75 mb-12">BSc IT Student | TotallySane Organization Lead</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4 mt-8">
+                    <a href="#about" class="btn btn-primary btn-lg">
+                        <i class="fas fa-user mr-2"></i>Learn More
                     </a>
-                    <a href="#contact" class="border border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white px-8 py-3 rounded-lg font-semibold transition-colors">
-                        Get In Touch
+                    <a href="#contact" class="btn btn-outline btn-lg">
+                        <i class="fas fa-envelope mr-2"></i>Get In Touch
                     </a>
                 </div>
             </div>
         </div>
-    </section>
+    </header>
 
-    <!-- About Section -->
-    <section id="about" class="py-20 bg-gray-800">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">About Me</h2>
-                <div class="w-20 h-1 bg-blue-400 mx-auto"></div>
-            </div>
-            
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="animate-slide-up">
-                    <h3 class="text-2xl font-bold mb-6 text-blue-400">Who I Am</h3>
-                    <p class="text-gray-300 mb-6">
-                        I'm a passionate full-stack developer with 5+ years of experience creating digital solutions 
-                        that bridge the gap between design and technology. I specialize in building scalable web 
-                        applications and intuitive user interfaces.
-                    </p>
-                    <p class="text-gray-300 mb-6">
-                        When I'm not coding, you can find me exploring new technologies, contributing to open-source 
-                        projects, or sharing knowledge through tech talks and mentoring.
-                    </p>
-                    <div class="flex flex-wrap gap-4">
-                        <span class="bg-blue-600 px-3 py-1 rounded-full text-sm">Problem Solver</span>
-                        <span class="bg-blue-600 px-3 py-1 rounded-full text-sm">Creative Thinker</span>
-                        <span class="bg-blue-600 px-3 py-1 rounded-full text-sm">Team Player</span>
-                    </div>
-                </div>
-                
-                <div class="animate-slide-up">
-                    <div class="bg-gray-700 p-8 rounded-lg">
-                        <h4 class="text-xl font-bold mb-6">Quick Facts</h4>
-                        <div class="space-y-4">
-                            <div class="flex items-center">
-                                <i class="fas fa-map-marker-alt text-blue-400 w-6"></i>
-                                <span>San Francisco, CA</span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-graduation-cap text-blue-400 w-6"></i>
-                                <span>B.S. Computer Science</span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-briefcase text-blue-400 w-6"></i>
-                                <span>5+ Years Experience</span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-code text-blue-400 w-6"></i>
-                                <span>50+ Projects Completed</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="py-20 bg-gray-900">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">Skills & Technologies</h2>
-                <div class="w-20 h-1 bg-blue-400 mx-auto"></div>
-            </div>
-            
-            <div class="skills-container">
-                <!-- Frontend Card -->
-                <div class="skill-card active" data-category="frontend">
-                    <div class="skill-card-header">
-                        <div class="text-blue-400 text-4xl mb-4">
-                            <i class="fas fa-palette"></i>
+    <main class="max-w-6xl mx-auto py-8 px-4">
+        <!-- About Section -->
+        <section id="about" class="mb-16">
+            <div class="card bg-base-100 shadow-xl">
+                <div class="card-body">
+                    <h2 class="card-title text-3xl mb-6 text-primary">
+                        <i class="fas fa-user mr-3"></i>About Me
+                    </h2>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4">Professional Summary</h3>
+                            <p class="text-base-content/80 mb-4">
+                                Final year BSc IT student at North-West University with a passion for graphical computing and optimization. 
+                                As the main lead for most projects at <strong>TotallySane</strong> organization, I drive innovation in 
+                                web technologies while maintaining a holistic view on software development practices.
+                            </p>
+                            <p class="text-base-content/80 mb-4">
+                                My current fixation on graphics programming and performance optimization is complemented by a solid 
+                                foundation in data structures, algorithms, and full-stack development. I thrive in collaborative 
+                                environments and enjoy mentoring fellow developers.
+                            </p>
                         </div>
-                        <h3 class="text-xl font-bold">Frontend Development</h3>
-                    </div>
-                    <div class="skill-card-content">
-                        <div class="space-y-3">
-                            <div class="flex justify-between">
-                                <span>React</span>
-                                <span class="text-blue-400">90%</span>
-                            </div>
-                            <div class="w-full bg-gray-600 rounded-full h-2">
-                                <div class="bg-blue-400 h-2 rounded-full progress-bar" style="width: 90%" data-width="90%"></div>
-                            </div>
-                            
-                            <div class="flex justify-between">
-                                <span>TypeScript</span>
-                                <span class="text-blue-400">85%</span>
-                            </div>
-                            <div class="w-full bg-gray-600 rounded-full h-2">
-                                <div class="bg-blue-400 h-2 rounded-full progress-bar" style="width: 85%" data-width="85%"></div>
-                            </div>
-                            
-                            <div class="flex justify-between">
-                                <span>TailwindCSS</span>
-                                <span class="text-blue-400">95%</span>
-                            </div>
-                            <div class="w-full bg-gray-600 rounded-full h-2">
-                                <div class="bg-blue-400 h-2 rounded-full progress-bar" style="width: 95%" data-width="95%"></div>
-                            </div>
-                            
-                            <div class="flex justify-between">
-                                <span>Vue.js</span>
-                                <span class="text-blue-400">78%</span>
-                            </div>
-                            <div class="w-full bg-gray-600 rounded-full h-2">
-                                <div class="bg-blue-400 h-2 rounded-full progress-bar" style="width: 78%" data-width="78%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Backend Card -->
-                <div class="skill-card" data-category="backend">
-                    <div class="skill-card-header">
-                        <div class="text-blue-400 text-4xl mb-4">
-                            <i class="fas fa-server"></i>
-                        </div>
-                        <h3 class="text-xl font-bold">Backend Development</h3>
-                    </div>
-                    <div class="skill-card-content">
-                        <div class="space-y-3">
-                            <div class="flex justify-between">
-                                <span>Node.js</span>
-                                <span class="text-blue-400">88%</span>
-                            </div>
-                            <div class="w-full bg-gray-600 rounded-full h-2">
-                                <div class="bg-blue-400 h-2 rounded-full progress-bar" style="width: 88%" data-width="88%"></div>
-                            </div>
-                            
-                            <div class="flex justify-between">
-                                <span>Python</span>
-                                <span class="text-blue-400">82%</span>
-                            </div>
-                            <div class="w-full bg-gray-600 rounded-full h-2">
-                                <div class="bg-blue-400 h-2 rounded-full progress-bar" style="width: 82%" data-width="82%"></div>
-                            </div>
-                            
-                            <div class="flex justify-between">
-                                <span>PostgreSQL</span>
-                                <span class="text-blue-400">80%</span>
-                            </div>
-                            <div class="w-full bg-gray-600 rounded-full h-2">
-                                <div class="bg-blue-400 h-2 rounded-full progress-bar" style="width: 80%" data-width="80%"></div>
-                            </div>
-                            
-                            <div class="flex justify-between">
-                                <span>Express.js</span>
-                                <span class="text-blue-400">85%</span>
-                            </div>
-                            <div class="w-full bg-gray-600 rounded-full h-2">
-                                <div class="bg-blue-400 h-2 rounded-full progress-bar" style="width: 85%" data-width="85%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tools Card -->
-                <div class="skill-card" data-category="tools">
-                    <div class="skill-card-header">
-                        <div class="text-blue-400 text-4xl mb-4">
-                            <i class="fas fa-tools"></i>
-                        </div>
-                        <h3 class="text-xl font-bold">Tools & Platforms</h3>
-                    </div>
-                    <div class="skill-card-content">
-                        <div class="space-y-3">
-                            <div class="flex justify-between">
-                                <span>Git</span>
-                                <span class="text-blue-400">92%</span>
-                            </div>
-                            <div class="w-full bg-gray-600 rounded-full h-2">
-                                <div class="bg-blue-400 h-2 rounded-full progress-bar" style="width: 92%" data-width="92%"></div>
-                            </div>
-                            
-                            <div class="flex justify-between">
-                                <span>Docker</span>
-                                <span class="text-blue-400">75%</span>
-                            </div>
-                            <div class="w-full bg-gray-600 rounded-full h-2">
-                                <div class="bg-blue-400 h-2 rounded-full progress-bar" style="width: 75%" data-width="75%"></div>
-                            </div>
-                            
-                            <div class="flex justify-between">
-                                <span>AWS</span>
-                                <span class="text-blue-400">78%</span>
-                            </div>
-                            <div class="w-full bg-gray-600 rounded-full h-2">
-                                <div class="bg-blue-400 h-2 rounded-full progress-bar" style="width: 78%" data-width="78%"></div>
-                            </div>
-                            
-                            <div class="flex justify-between">
-                                <span>Figma</span>
-                                <span class="text-blue-400">88%</span>
-                            </div>
-                            <div class="w-full bg-gray-600 rounded-full h-2">
-                                <div class="bg-blue-400 h-2 rounded-full progress-bar" style="width: 88%" data-width="88%"></div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4">Quick Facts</h3>
+                            <div class="space-y-3">
+                                <div class="flex items-center">
+                                    <i class="fas fa-graduation-cap text-primary w-6 mr-3"></i>
+                                    <span>BSc IT - North-West University (2023-2025)</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-map-marker-alt text-primary w-6 mr-3"></i>
+                                    <span>Potchefstroom, North-West, South Africa</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-users text-primary w-6 mr-3"></i>
+                                    <span>Lead Developer @ TotallySane</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-code text-primary w-6 mr-3"></i>
+                                    <span>Graphics Computing Specialist</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-language text-primary w-6 mr-3"></i>
+                                    <span>English, Afrikaans (Native) | Japanese (Elementary)</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="py-20 bg-gray-800">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">Featured Projects</h2>
-                <div class="w-20 h-1 bg-blue-400 mx-auto"></div>
-            </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project 1 -->
-                <div class="bg-gray-900 rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
-                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=250&fit=crop" 
-                         alt="E-commerce Platform" 
-                         class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">E-commerce Platform</h3>
-                        <p class="text-gray-400 mb-4">A full-stack e-commerce solution with React, Node.js, and Stripe integration.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-blue-600 text-xs px-2 py-1 rounded">React</span>
-                            <span class="bg-green-600 text-xs px-2 py-1 rounded">Node.js</span>
-                            <span class="bg-purple-600 text-xs px-2 py-1 rounded">MongoDB</span>
-                        </div>
-                        <div class="flex gap-4">
-                            <a href="#" class="text-blue-400 hover:text-blue-300 transition-colors">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
-                            </a>
-                            <a href="#" class="text-blue-400 hover:text-blue-300 transition-colors">
-                                <i class="fab fa-github"></i> Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="bg-gray-900 rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop" 
-                         alt="Data Visualization Dashboard" 
-                         class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Analytics Dashboard</h3>
-                        <p class="text-gray-400 mb-4">Interactive data visualization dashboard with real-time analytics and reporting.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-blue-600 text-xs px-2 py-1 rounded">Vue.js</span>
-                            <span class="bg-yellow-600 text-xs px-2 py-1 rounded">D3.js</span>
-                            <span class="bg-red-600 text-xs px-2 py-1 rounded">Python</span>
-                        </div>
-                        <div class="flex gap-4">
-                            <a href="#" class="text-blue-400 hover:text-blue-300 transition-colors">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
-                            </a>
-                            <a href="#" class="text-blue-400 hover:text-blue-300 transition-colors">
-                                <i class="fab fa-github"></i> Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="bg-gray-900 rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
-                    <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=250&fit=crop" 
-                         alt="Mobile App" 
-                         class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Mobile Fitness App</h3>
-                        <p class="text-gray-400 mb-4">Cross-platform mobile app for fitness tracking with social features.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-blue-600 text-xs px-2 py-1 rounded">React Native</span>
-                            <span class="bg-green-600 text-xs px-2 py-1 rounded">Firebase</span>
-                            <span class="bg-purple-600 text-xs px-2 py-1 rounded">Redux</span>
-                        </div>
-                        <div class="flex gap-4">
-                            <a href="#" class="text-blue-400 hover:text-blue-300 transition-colors">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
-                            </a>
-                            <a href="#" class="text-blue-400 hover:text-blue-300 transition-colors">
-                                <i class="fab fa-github"></i> Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="text-center mt-12">
-                <a href="#" class="bg-blue-600 hover:bg-blue-700 px-8 py-3 rounded-lg font-semibold transition-colors">
-                    View All Projects
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-gray-900">
-        <div class="max-w-4xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">Get In Touch</h2>
-                <div class="w-20 h-1 bg-blue-400 mx-auto mb-6"></div>
-                <p class="text-gray-400 text-lg">
-                    Have a project in mind? Let's discuss how we can work together.
-                </p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 gap-12">
-                <!-- Contact Info -->
-                <div>
-                    <h3 class="text-2xl font-bold mb-6">Let's Connect</h3>
+        <!-- Experience Section -->
+        <section id="experience" class="mb-16">
+            <div class="card bg-base-100 shadow-xl">
+                <div class="card-body">
+                    <h2 class="card-title text-3xl mb-6 text-primary">
+                        <i class="fas fa-briefcase mr-3"></i>Experience
+                    </h2>
                     <div class="space-y-6">
-                        <div class="flex items-center">
-                            <div class="bg-blue-600 p-3 rounded-lg mr-4">
-                                <i class="fas fa-envelope text-white"></i>
+                        <!-- TotallySane Leadership -->
+                        <div class="border-l-4 border-primary pl-6">
+                            <div class="flex flex-wrap justify-between items-start mb-2">
+                                <h3 class="text-xl font-semibold">Lead Developer & Project Manager</h3>
+                                <span class="badge badge-primary">2024 - Present</span>
                             </div>
-                            <div>
-                                <h4 class="font-semibold">Email</h4>
-                                <p class="text-gray-400">john.doe@example.com</p>
-                            </div>
+                            <p class="text-secondary font-medium mb-2">TotallySane Organization</p>
+                            <ul class="list-disc list-inside text-base-content/80 space-y-1">
+                                <li>Leading development of the main aggregation page linking all organizational services</li>
+                                <li>Architecting common portfolio platform for all team members</li>
+                                <li>Driving technical decisions and code review processes</li>
+                                <li>Mentoring team members and establishing development best practices</li>
+                            </ul>
                         </div>
-                        
-                        <div class="flex items-center">
-                            <div class="bg-blue-600 p-3 rounded-lg mr-4">
-                                <i class="fas fa-phone text-white"></i>
+
+                        <!-- Recent Work Experience -->
+                        <div class="border-l-4 border-accent pl-6">
+                            <div class="flex flex-wrap justify-between items-start mb-2">
+                                <h3 class="text-xl font-semibold">Technical Support Staff</h3>
+                                <span class="badge badge-accent">Jan 2025</span>
                             </div>
-                            <div>
-                                <h4 class="font-semibold">Phone</h4>
-                                <p class="text-gray-400">+1 (555) 123-4567</p>
-                            </div>
+                            <p class="text-secondary font-medium mb-2">Calgro M3 Memorial Parks - Bryanston, Gauteng</p>
+                            <p class="text-base-content/80">Technical support and system maintenance</p>
                         </div>
-                        
-                        <div class="flex items-center">
-                            <div class="bg-blue-600 p-3 rounded-lg mr-4">
-                                <i class="fas fa-map-marker-alt text-white"></i>
+
+                        <div class="border-l-4 border-accent pl-6">
+                            <div class="flex flex-wrap justify-between items-start mb-2">
+                                <h3 class="text-xl font-semibold">Freelance Assistant</h3>
+                                <span class="badge badge-accent">Nov 2024 - Dec 2024</span>
                             </div>
-                            <div>
-                                <h4 class="font-semibold">Location</h4>
-                                <p class="text-gray-400">San Francisco, CA</p>
-                            </div>
+                            <p class="text-secondary font-medium mb-2">The Leverage Corporation</p>
+                            <p class="text-base-content/80">Assisted with Prison Break Christmas Run and Cycle Events</p>
                         </div>
                     </div>
-                    
-                    <div class="mt-8">
-                        <h4 class="font-semibold mb-4">Follow Me</h4>
-                        <div class="flex space-x-4">
-                            <a href="#" class="bg-gray-800 hover:bg-blue-600 p-3 rounded-lg transition-colors">
-                                <i class="fab fa-github"></i>
-                            </a>
-                            <a href="#" class="bg-gray-800 hover:bg-blue-600 p-3 rounded-lg transition-colors">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                            <a href="#" class="bg-gray-800 hover:bg-blue-600 p-3 rounded-lg transition-colors">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                            <a href="#" class="bg-gray-800 hover:bg-blue-600 p-3 rounded-lg transition-colors">
-                                <i class="fab fa-dribbble"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Contact Form -->
-                <div>
-                    <form class="space-y-6">
-                        <div>
-                            <label for="name" class="block text-sm font-medium mb-2">Name</label>
-                            <input type="text" id="name" name="name" 
-                                   class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent outline-none transition-all"
-                                   placeholder="Your Name">
-                        </div>
-                        
-                        <div>
-                            <label for="email" class="block text-sm font-medium mb-2">Email</label>
-                            <input type="email" id="email" name="email" 
-                                   class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent outline-none transition-all"
-                                   placeholder="your.email@example.com">
-                        </div>
-                        
-                        <div>
-                            <label for="subject" class="block text-sm font-medium mb-2">Subject</label>
-                            <input type="text" id="subject" name="subject" 
-                                   class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent outline-none transition-all"
-                                   placeholder="Project Inquiry">
-                        </div>
-                        
-                        <div>
-                            <label for="message" class="block text-sm font-medium mb-2">Message</label>
-                            <textarea id="message" name="message" rows="4" 
-                                      class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent outline-none transition-all resize-none"
-                                      placeholder="Tell me about your project..."></textarea>
-                        </div>
-                        
-                        <button type="submit" 
-                                class="w-full bg-blue-600 hover:bg-blue-700 py-3 rounded-lg font-semibold transition-colors">
-                            Send Message
-                        </button>
-                    </form>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 border-t border-gray-700 py-8">
-        <div class="max-w-6xl mx-auto px-4 text-center">
-            <p class="text-gray-400">
-                © 2025 John Doe. All rights reserved. Built with ❤️ and TailwindCSS.
-            </p>
+        <!-- Projects Section -->
+        <section id="projects" class="mb-16">
+            <div class="card bg-base-100 shadow-xl">
+                <div class="card-body">
+                    <h2 class="card-title text-3xl mb-6 text-primary">
+                        <i class="fas fa-rocket mr-3"></i>Key Projects
+                    </h2>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <!-- TotallySane Aggregation Platform -->
+                        <div class="card bg-base-200 shadow-md">
+                            <div class="card-body">
+                                <h3 class="card-title text-lg">TotallySane Aggregation Platform</h3>
+                                <p class="text-sm text-base-content/70 mb-3">Lead Developer</p>
+                                <p class="text-base-content/80 mb-4">
+                                    Comprehensive web platform serving as the central hub for all TotallySane services. 
+                                    Features service discovery, team portfolio showcase, and unified authentication.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="badge badge-primary badge-sm">React.js</span>
+                                    <span class="badge badge-secondary badge-sm">MongoDB</span>
+                                    <span class="badge badge-accent badge-sm">Node.js</span>
+                                    <span class="badge badge-info badge-sm">Architecture</span>
+                                </div>
+                                <div class="card-actions justify-end">
+                                    <a href="https://github.com/TotallySane" class="btn btn-sm btn-outline" target="_blank">
+                                        <i class="fab fa-github mr-1"></i>View Org
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Shader Playground -->
+                        <div class="card bg-base-200 shadow-md">
+                            <div class="card-body">
+                                <h3 class="card-title text-lg">Interactive Shader Playground</h3>
+                                <p class="text-sm text-base-content/70 mb-3">Personal Project</p>
+                                <p class="text-base-content/80 mb-4">
+                                    Real-time WebGL shader editor and visualization tool. Demonstrates graphics programming 
+                                    skills with Three.js and GLSL, featuring dynamic material switching and animation.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="badge badge-primary badge-sm">Three.js</span>
+                                    <span class="badge badge-secondary badge-sm">WebGL</span>
+                                    <span class="badge badge-accent badge-sm">GLSL</span>
+                                    <span class="badge badge-info badge-sm">Graphics</span>
+                                </div>
+                                <div class="card-actions justify-end">
+                                    <a href="#playground" class="btn btn-sm btn-outline">
+                                        <i class="fas fa-play mr-1"></i>Try Demo
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Optimization Projects -->
+                        <div class="card bg-base-200 shadow-md">
+                            <div class="card-body">
+                                <h3 class="card-title text-lg">Performance Optimization Suite</h3>
+                                <p class="text-sm text-base-content/70 mb-3">Research & Development</p>
+                                <p class="text-base-content/80 mb-4">
+                                    Collection of algorithms and data structure implementations focused on performance optimization. 
+                                    Includes benchmarking tools and comparative analysis.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="badge badge-primary badge-sm">Algorithms</span>
+                                    <span class="badge badge-secondary badge-sm">Data Structures</span>
+                                    <span class="badge badge-accent badge-sm">Optimization</span>
+                                    <span class="badge badge-info badge-sm">Benchmarking</span>
+                                </div>
+                                <div class="card-actions justify-end">
+                                    <span class="btn btn-sm btn-disabled">In Development</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Team Portfolio Platform -->
+                        <div class="card bg-base-200 shadow-md">
+                            <div class="card-body">
+                                <h3 class="card-title text-lg">Collaborative Portfolio Platform</h3>
+                                <p class="text-sm text-base-content/70 mb-3">Team Lead</p>
+                                <p class="text-base-content/80 mb-4">
+                                    Unified portfolio system for TotallySane team members. Features individual profiles, 
+                                    project showcases, and team collaboration metrics.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="badge badge-primary badge-sm">Full-Stack</span>
+                                    <span class="badge badge-secondary badge-sm">Team Management</span>
+                                    <span class="badge badge-accent badge-sm">Portfolio</span>
+                                    <span class="badge badge-info badge-sm">Collaboration</span>
+                                </div>
+                                <div class="card-actions justify-end">
+                                    <span class="btn btn-sm btn-disabled">Coming Soon</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="mb-16">
+            <div class="card bg-base-100 shadow-xl">
+                <div class="card-body">
+                    <h2 class="card-title text-3xl mb-6 text-primary">
+                        <i class="fas fa-cogs mr-3"></i>Technical Skills
+                    </h2>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <!-- Current Focus -->
+                        <div class="card bg-gradient-to-br from-primary/20 to-secondary/20 border border-primary/30">
+                            <div class="card-body">
+                                <h3 class="card-title text-primary">
+                                    <i class="fas fa-star mr-2"></i>Current Focus
+                                </h3>
+                                <div class="space-y-3">
+                                    <div class="skill-item">
+                                        <div class="flex justify-between mb-1">
+                                            <span class="font-medium">Graphics Computing</span>
+                                            <span class="text-primary">Advanced</span>
+                                        </div>
+                                        <progress class="progress progress-primary" value="90" max="100"></progress>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="flex justify-between mb-1">
+                                            <span class="font-medium">WebGL / Three.js</span>
+                                            <span class="text-primary">Proficient</span>
+                                        </div>
+                                        <progress class="progress progress-primary" value="85" max="100"></progress>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="flex justify-between mb-1">
+                                            <span class="font-medium">Performance Optimization</span>
+                                            <span class="text-primary">Advanced</span>
+                                        </div>
+                                        <progress class="progress progress-primary" value="88" max="100"></progress>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="flex justify-between mb-1">
+                                            <span class="font-medium">GLSL Shaders</span>
+                                            <span class="text-primary">Intermediate</span>
+                                        </div>
+                                        <progress class="progress progress-primary" value="75" max="100"></progress>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Core Technologies -->
+                        <div class="card bg-base-200">
+                            <div class="card-body">
+                                <h3 class="card-title">
+                                    <i class="fas fa-code mr-2"></i>Core Technologies
+                                </h3>
+                                <div class="space-y-3">
+                                    <div class="skill-item">
+                                        <div class="flex justify-between mb-1">
+                                            <span class="font-medium">React.js</span>
+                                            <span class="text-secondary">Expert</span>
+                                        </div>
+                                        <progress class="progress progress-secondary" value="92" max="100"></progress>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="flex justify-between mb-1">
+                                            <span class="font-medium">MongoDB</span>
+                                            <span class="text-secondary">Proficient</span>
+                                        </div>
+                                        <progress class="progress progress-secondary" value="80" max="100"></progress>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="flex justify-between mb-1">
+                                            <span class="font-medium">Back-End Development</span>
+                                            <span class="text-secondary">Advanced</span>
+                                        </div>
+                                        <progress class="progress progress-secondary" value="85" max="100"></progress>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="flex justify-between mb-1">
+                                            <span class="font-medium">JavaScript/TypeScript</span>
+                                            <span class="text-secondary">Expert</span>
+                                        </div>
+                                        <progress class="progress progress-secondary" value="90" max="100"></progress>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Foundational Skills -->
+                        <div class="card bg-base-200">
+                            <div class="card-body">
+                                <h3 class="card-title">
+                                    <i class="fas fa-foundation mr-2"></i>Foundation & Theory
+                                </h3>
+                                <div class="space-y-3">
+                                    <div class="skill-item">
+                                        <div class="flex justify-between mb-1">
+                                            <span class="font-medium">Data Structures</span>
+                                            <span class="text-accent">Expert</span>
+                                        </div>
+                                        <progress class="progress progress-accent" value="95" max="100"></progress>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="flex justify-between mb-1">
+                                            <span class="font-medium">Algorithms</span>
+                                            <span class="text-accent">Advanced</span>
+                                        </div>
+                                        <progress class="progress progress-accent" value="90" max="100"></progress>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="flex justify-between mb-1">
+                                            <span class="font-medium">System Architecture</span>
+                                            <span class="text-accent">Proficient</span>
+                                        </div>
+                                        <progress class="progress progress-accent" value="82" max="100"></progress>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="flex justify-between mb-1">
+                                            <span class="font-medium">Team Leadership</span>
+                                            <span class="text-accent">Advanced</span>
+                                        </div>
+                                        <progress class="progress progress-accent" value="88" max="100"></progress>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Shader Playground Section -->
+        <section id="playground" class="mb-16">
+            <div class="card bg-base-100 shadow-xl">
+                <div class="card-body">
+                    <h2 class="card-title text-3xl mb-6 text-primary">
+                        <i class="fas fa-palette mr-3"></i>Shader Playground
+                    </h2>
+                    <p class="text-base-content/80 mb-6">
+                        Interactive demonstration of my graphics programming skills. This real-time shader editor showcases 
+                        my current focus on graphical computing and WebGL optimization.
+                    </p>
+                    
+                    <div class="bg-base-200 p-6 rounded-lg">
+                        <div class="flex flex-wrap gap-4 mb-4">
+                            <div class="form-control">
+                                <label class="label">
+                                    <span class="label-text">Shader</span>
+                                </label>
+                                <select id="shaderSelect" class="select select-bordered select-sm">
+                                    <!-- Options populated by JavaScript -->
+                                </select>
+                            </div>
+                            <div class="form-control">
+                                <label class="label">
+                                    <span class="label-text">Vertex</span>
+                                </label>
+                                <select id="vertexSelect" class="select select-bordered select-sm">
+                                    <!-- Future vertex shader options -->
+                                </select>
+                            </div>
+                            <div class="form-control">
+                                <label class="label">
+                                    <span class="label-text">Mesh</span>
+                                </label>
+                                <select id="meshSelect" class="select select-bordered select-sm">
+                                    <!-- Future mesh options -->
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="relative">
+                            <canvas id="shaderCanvas" class="w-full h-96 bg-base-300 rounded-lg border border-base-300"></canvas>
+                            <div class="absolute top-2 right-2">
+                                <span class="badge badge-primary badge-sm">WebGL + Three.js</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4 text-sm text-base-content/60">
+                            <p><i class="fas fa-info-circle mr-1"></i> 
+                            This playground demonstrates real-time fragment shaders with dynamic uniforms and interactive controls.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="mb-16">
+            <div class="card bg-base-100 shadow-xl">
+                <div class="card-body">
+                    <h2 class="card-title text-3xl mb-6 text-primary">
+                        <i class="fas fa-envelope mr-3"></i>Get In Touch
+                    </h2>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4">Let's Connect</h3>
+                            <p class="text-base-content/80 mb-6">
+                                I'm always interested in discussing new opportunities, collaboration on interesting projects, 
+                                or simply connecting with fellow developers and IT professionals.
+                            </p>
+                            <div class="space-y-4">
+                                <a href="mailto:vaperizer2@gmail.com" class="flex items-center p-3 bg-base-200 rounded-lg hover:bg-base-300 transition-colors">
+                                    <i class="fas fa-envelope text-primary w-6 mr-3"></i>
+                                    <span>vaperizer2@gmail.com</span>
+                                </a>
+                                <a href="https://www.linkedin.com/in/sebastian-klopper-1b95272b8/" target="_blank" 
+                                   class="flex items-center p-3 bg-base-200 rounded-lg hover:bg-base-300 transition-colors">
+                                    <i class="fab fa-linkedin text-primary w-6 mr-3"></i>
+                                    <span>LinkedIn Profile</span>
+                                </a>
+                                <a href="https://github.com/TotallySane" target="_blank" 
+                                   class="flex items-center p-3 bg-base-200 rounded-lg hover:bg-base-300 transition-colors">
+                                    <i class="fab fa-github text-primary w-6 mr-3"></i>
+                                    <span>TotallySane Organization</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4">Current Status</h3>
+                            <div class="space-y-4">
+                                <div class="alert alert-info">
+                                    <i class="fas fa-graduation-cap"></i>
+                                    <span>Graduating BSc IT in December 2025</span>
+                                </div>
+                                <div class="alert alert-success">
+                                    <i class="fas fa-rocket"></i>
+                                    <span>Leading multiple projects at TotallySane</span>
+                                </div>
+                                <div class="alert alert-warning">
+                                    <i class="fas fa-search"></i>
+                                    <span>Open to exciting opportunities</span>
+                                </div>
+                            </div>
+                            <div class="mt-6">
+                                <h4 class="font-semibold mb-2">Interests & Availability</h4>
+                                <ul class="text-sm text-base-content/70 space-y-1">
+                                    <li>• Graphics programming and optimization projects</li>
+                                    <li>• Team leadership and mentoring opportunities</li>
+                                    <li>• Full-stack development collaborations</li>
+                                    <li>• Open source contributions</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-base-300 text-center p-6 mt-16">
+        <p class="text-base-content/70">© 2025 Sebastian Klopper | Built with passion for graphics computing</p>
+        <div class="flex justify-center gap-4 mt-2">
+            <a href="https://github.com/TotallySane" class="link link-primary" target="_blank">TotallySane</a>
+            <a href="https://www.linkedin.com/in/sebastian-klopper-1b95272b8/" class="link link-primary" target="_blank">LinkedIn</a>
         </div>
     </footer>
 
-    <!-- JavaScript -->
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 </html>
