@@ -44,7 +44,7 @@ function initHeroBackground() {
         instancedMesh.setMatrixAt(i, matrix);
     }
 
-    instancedMesh.instanceMatrix.needsUpdate = true; // Important!
+    instancedMesh.instanceMatrix.needsUpdate = true; // Ensures the instance matrix updates are sent to the GPU for rendering. Without this, changes to star positions will not be reflected visually.
 
     heroStars = instancedMesh;
     heroScene.add(instancedMesh);
