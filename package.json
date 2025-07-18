@@ -19,6 +19,7 @@
   "author": "Your Name",
   "license": "MIT",
   "devDependencies": {
+    "daisyui": "^5.0.30",
     "live-server": "^1.2.2"
   },
   "repository": {
