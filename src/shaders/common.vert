@@ -7,7 +7,11 @@ void main() {
   vUv = uv;
 
     vec4 position = vec4(position, 1.0);
+<<<<<<< HEAD
     position.y += cos(u_time + position.x * 8.0)/8.0;
+=======
+    position.y += sin(u_time + position.x * 8.0)/8.0;
+>>>>>>> d54e1a2cd74f3eee0d715336c248d85eb18cde32
 
   gl_Position = projectionMatrix * modelViewMatrix * position;
 }

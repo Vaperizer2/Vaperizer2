@@ -1,5 +1,8 @@
 
+<<<<<<< HEAD
 /* Canvas styling */
+=======
+>>>>>>> d54e1a2cd74f3eee0d715336c248d85eb18cde32
 #bg-canvas {
   position: absolute;
   top: 0; left: 0; width: 100%; height: 100%;
@@ -8,12 +11,17 @@
   pointer-events: none;
   /* Optional: Add slight blur or opacity for style */
   opacity: 0.6;
+<<<<<<< HEAD
   filter: blur(0.8px);
+=======
+  filter: blur(0.5px);
+>>>>>>> d54e1a2cd74f3eee0d715336c248d85eb18cde32
 }
 
 .hero-content {
   position: relative;
   z-index: 1;
+<<<<<<< HEAD
 }
 
 /* Custom navbar styles */
@@ -92,4 +100,6 @@ html {
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+=======
+>>>>>>> d54e1a2cd74f3eee0d715336c248d85eb18cde32
 }

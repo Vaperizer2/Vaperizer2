@@ -4,16 +4,23 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+<<<<<<< HEAD
     <title>Sebastian Klopper | Lead Developer & Graphics Computing Specialist</title>
     <meta name="description" content="Final year BSc IT student specializing in graphical computing, optimization, and team leadership. Main lead at TotallySane organization.">
     
+=======
+    <title>Sebastian Klopper | Portfolio</title>
+>>>>>>> d54e1a2cd74f3eee0d715336c248d85eb18cde32
     <!-- Replace with build CSS in production -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/three@0.153.0/build/three.min.js"></script>
+<<<<<<< HEAD
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet" type="text/css" />
+=======
+>>>>>>> d54e1a2cd74f3eee0d715336c248d85eb18cde32
     <script type="importmap">
     {
       "imports": {
@@ -24,6 +31,7 @@
 </head>
 
 <body class="bg-base-200 antialiased text-base-content">
+<<<<<<< HEAD
     <!-- Fixed Navigation Bar -->
     <nav class="navbar bg-base-100 shadow-lg fixed top-0 z-50 backdrop-blur-sm bg-opacity-95">
         <div class="navbar-start">
@@ -32,6 +40,15 @@
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
                     </svg>
+=======
+    <!-- Hero Section with animated background -->
+    <header id="hero" class="relative flex items-center justify-center h-[350px] overflow-hidden">
+        <canvas id="bg-canvas" class="absolute inset-0 w-full h-full z-0"></canvas>
+        <div class="hero-content z-10 text-center w-full">
+            <div class="avatar mb-4">
+                <div class="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 mx-auto">
+                    <img src="assets/profile.jpg" alt="Your profile photo" />
+>>>>>>> d54e1a2cd74f3eee0d715336c248d85eb18cde32
                 </div>
                 <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                     <li><a href="#about" class="hover:text-primary">About</a></li>
@@ -42,6 +59,7 @@
                     <li><a href="#contact" class="hover:text-primary">Contact</a></li>
                 </ul>
             </div>
+<<<<<<< HEAD
             <a href="#hero" class="btn btn-ghost text-xl font-bold">Sebastian K.</a>
         </div>
         <div class="navbar-center hidden lg:flex">
@@ -133,12 +151,53 @@
                                     <span>English, Afrikaans (Native) | Japanese (Elementary)</span>
                                 </div>
                             </div>
+=======
+            <h1 class="text-4xl font-bold mb-2">Your Name</h1>
+            <p class="subtitle text-lg mb-4">Web Developer | Designer | Creator</p>
+            <nav class="mb-4">
+                <a class="btn btn-outline btn-primary mx-2" href="#about">About</a>
+                <a class="btn btn-outline btn-primary mx-2" href="#projects">Projects</a>
+                <a class="btn btn-outline btn-primary mx-2" href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+
+    <main class="max-w-3xl mx-auto py-8 px-4">
+        <section id="about" class="mb-12">
+            <h2 class="text-2xl font-semibold mb-4">About Me</h2>
+            <p class="mb-2">
+                Welcome to my portfolio! I am passionate about building beautiful and functional web experiences.
+                I love working with modern web technologies and always strive to learn more.
+            </p>
+        </section>
+
+        <section id="projects" class="mb-12">
+            <h2 class="text-2xl font-semibold mb-4">Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="card bg-base-100 shadow-xl">
+                    <div class="card-body">
+                        <h3 class="card-title">Project One</h3>
+                        <p>Short description of the project and your role.</p>
+                        <div class="card-actions">
+                            <a class="btn btn-link" href="#">View on GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card bg-base-100 shadow-xl">
+                    <div class="card-body">
+                        <h3 class="card-title">Project Two</h3>
+                        <p>Short description of another featured project.</p>
+                        <div class="card-actions">
+                            <a class="btn btn-link" href="#">Live Demo</a>
+>>>>>>> d54e1a2cd74f3eee0d715336c248d85eb18cde32
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
+<<<<<<< HEAD
         <!-- Experience Section -->
         <section id="experience" class="mb-16">
             <div class="card bg-base-100 shadow-xl">
@@ -181,10 +240,47 @@
                             <p class="text-base-content/80">Assisted with Prison Break Christmas Run and Cycle Events</p>
                         </div>
                     </div>
+=======
+        <section id="contact" class="mb-12">
+            <h2 class="text-2xl font-semibold mb-4">Contact</h2>
+            <p>You can reach me at <a class="link link-primary" href="mailto:your@email.com">your@email.com</a> or via
+                social media:</p>
+            <div class="flex gap-4 mt-2">
+                <a class="btn btn-sm btn-outline btn-info" href="#">GitHub</a>
+                <a class="btn btn-sm btn-outline btn-info" href="#">LinkedIn</a>
+                <a class="btn btn-sm btn-outline btn-info" href="#">Twitter</a>
+            </div>
+        </section>
+
+        <!-- 🎮 ShaderToy-style Playground -->
+        <!-- inside #playground div -->
+        <section id="playground" class="space-y-4">
+            <h2 class="text-3xl font-semibold">Playground</h2>
+
+            <div class="relative w-full h-96 bg-black rounded-lg overflow-hidden shadow-lg">
+                <canvas id="shaderCanvas" class="w-full h-full"></canvas>
+                <div class="absolute bottom-4 right-4 space-x-2">
+                    <button id="reloadBtn"
+                        class="px-3 py-1 bg-gray-800 text-white rounded hover:bg-gray-700">Reload</button>
+                    <!-- Additional controls here -->
+                </div>
+                <div class="absolute top-4 left-4 space-x-2 flex items-center bg-gray-800 p-2 rounded">
+                    <label for="shaderSelect" class="text-white text-sm">Shader:</label>
+                    <select id="shaderSelect" class="text-sm bg-gray-700 text-white rounded p-1">
+                        <!-- Options added from Avalible shaders -->
+                    </select>
+                    <select id="vertexSelect" class="text-sm bg-gray-700 text-white rounded p-1">
+                        <!-- Options added from Avalible vertex shaders -->
+                    </select>
+                    <select id="meshSelect" class="text-sm bg-gray-700 text-white rounded p-1">
+                        <!-- Options added from Avalible meshes -->
+                    </select>
+>>>>>>> d54e1a2cd74f3eee0d715336c248d85eb18cde32
                 </div>
             </div>
         </section>
 
+<<<<<<< HEAD
         <!-- Projects Section -->
         <section id="projects" class="mb-16">
             <div class="card bg-base-100 shadow-xl">
@@ -539,8 +635,19 @@
             <a href="https://github.com/TotallySane" class="link link-primary" target="_blank">TotallySane</a>
             <a href="https://www.linkedin.com/in/sebastian-klopper-1b95272b8/" class="link link-primary" target="_blank">LinkedIn</a>
         </div>
+=======
+    </main>
+
+
+    <footer class="bg-gray-100 text-center p-4">
+        <p>© 2025 Your Name</p>
+>>>>>>> d54e1a2cd74f3eee0d715336c248d85eb18cde32
     </footer>
 
     <script type="module" src="script.js"></script>
 </body>
+<<<<<<< HEAD
+=======
+
+>>>>>>> d54e1a2cd74f3eee0d715336c248d85eb18cde32
 </html>
