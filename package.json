@@ -21,10 +21,7 @@
   "author": "Your Name",
   "license": "MIT",
   "devDependencies": {
-<<<<<<< HEAD
     "copyfiles": "^2.4.1",
-=======
->>>>>>> d54e1a2cd74f3eee0d715336c248d85eb18cde32
     "daisyui": "^5.0.30",
     "live-server": "^1.2.2"
   },
