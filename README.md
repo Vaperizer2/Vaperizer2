@@ -1,106 +1,50 @@
-# Portfolio Website
+<!-- Vaperizer2's GitHub Profile README -->
 
-A modern, interactive portfolio website featuring Three.js animations and shader effects.
+<h1 align="center">Hi, I'm Vaperizer2 👋</h1>
 
-## 🌟 Features
+<p align="center">
+  <b>Welcome to my GitHub profile!</b><br>
+  I'm passionate about web development, creative coding, and sharing cool projects.
+</p>
 
-- **Interactive 3D Background**: Animated planet with orbiting moons and starfield
-- **Shader Playground**: Real-time shader editor with multiple effects
-- **Responsive Design**: Works on desktop and mobile devices
-- **Smooth Animations**: Hardware-accelerated WebGL animations
-- **Modern UI**: Clean, professional design
+---
 
-## 🚀 Live Demo
+### 🚀 About Me
 
-Visit the live site: [https://Vaperizer2.github.io/Vaperizer2](https://Vaperizer2.github.io/Vaperizer2)
+- 💻 Web developer focused on **HTML**, **JavaScript**, and **CSS**
+- 🎨 Interested in creative coding with **GLSL** and graphics programming
+- 🛠️ Always exploring new technologies and frameworks
+- 🌱 Lifelong learner, currently diving deeper into modern web APIs and visual effects
 
-## 🛠️ Development
+---
 
-### Prerequisites
+### 📈 GitHub Stats
 
-- Node.js (v16 or higher)
-- npm or yarn
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=Vaperizer2&show_icons=true&theme=dracula" alt="Vaperizer2's GitHub Stats" />
+</p>
 
-### Installation
+---
 
-```bash
-# Clone the repository
-git clone https://github.com/Vaperizer2/Vaperizer2.git
-cd Vaperizer2
+### 🌐 Connect With Me
 
-# Install dependencies
-npm install
+- 💬 Ask me about web development, creative coding, or portfolio tips!
+- 📫 How to reach me: [GitHub Issues](https://github.com/Vaperizer2/Vaperizer2/issues) (or add your preferred contact info here!)
 
-# Start development server
-npm start
-```
+---
 
-### Building
+### 🧰 Tools & Technologies
 
-```bash
-# Build for production
-npm run build
+![HTML5](https://img.shields.io/badge/-HTML5-E34F26?logo=html5&logoColor=white)
+![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?logo=javascript&logoColor=black)
+![CSS3](https://img.shields.io/badge/-CSS3-1572B6?logo=css3&logoColor=white)
+![GLSL](https://img.shields.io/badge/-GLSL-8CC4FF?logo=OpenGL&logoColor=black)
 
-# Preview build
-npm run preview
-```
+---
 
-## 📦 Deployment
+### ✨ Fun Facts
 
-This project is automatically deployed to GitHub Pages via GitHub Actions when you push to the main branch.
+- I love making interactive and visually striking web experiences!
+- Always up for collaborating or learning something new.
+- Coding is my creative outlet.
 
-### Manual Deployment Setup
-
-1. Go to your repository settings
-2. Navigate to "Pages" section
-3. Set source to "GitHub Actions"
-4. Push to main branch to trigger deployment
-
-## 🎨 Customization
-
-- **Shaders**: Add new shader files in `src/shaders/`
-- **Styles**: Modify `src/styles.css`
-- **Content**: Update `src/index.html`
-- **3D Scene**: Customize animations in `src/script.js`
-
-## 📁 Project Structure
-
-```
-src/
-├── index.html          # Main HTML file
-├── script.js           # Main JavaScript file
-├── styles.css          # Styles
-├── assets/            # Images and other assets
-└── shaders/           # GLSL shader files
-    ├── common.vert    # Common vertex shader
-    ├── default.frag   # Default fragment shader
-    ├── wave.frag      # Wave effect shader
-    ├── colorShift.frag # Color shifting shader
-    └── shaders.json   # Shader list configuration
-```
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
-
-## � License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-<!--
-**Vaperizer2/Vaperizer2** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-
-Here are some ideas to get you started:
-
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
