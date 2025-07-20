@@ -7,7 +7,15 @@ const heroCanvas = document.getElementById("bg-canvas");
 const selectS = document.getElementById("shaderSelect");
 const selectV = document.getElementById("vertexSelect");
 const selectM = document.getElementById("meshSelect");
-let commonVertexShader;
+const selectE = document.getElementById("experienceSelect");
+const resetViewBtn = document.getElementById("resetViewBtn");
+const fullscreenBtn = document.getElementById("fullscreenBtn");
+const infoBtn = document.getElementById("infoBtn");
+
+// Store loaded resources
+let experiences = [];
+let meshes = [];
+let currentExperience = null;
 
 // Initialize hero background animation
 function initHeroBackground() {
@@ -203,30 +211,209 @@ async function loadText(path) {
     return res.text();
 }
 
-async function loadShadersList() {
-    const list = await (await fetch("shaders/shaders.json")).json();
-    list.forEach(name => {
-        const opt = document.createElement("option");
-        opt.value = name;
-        opt.textContent = name.charAt(0).toUpperCase() + name.slice(1);
-        selectS.appendChild(opt);
-    });
-    return list;
+// Load shader lists from new structured files
+async function loadShadersConfig() {
+    try {
+        const config = await (await fetch("shaders/shaders.json")).json();
+        return config;
+    } catch (error) {
+        console.error("Failed to load shader configuration:", error);
+        return {
+            fragmentShaders: [],
+            vertexShaders: [],
+            meshes: [],
+            experiences: []
+        };
+    }
 }
 
-async function createMaterial(name) {
-    if (!commonVertexShader) {
-        commonVertexShader = await loadText("shaders/common.vert");
+// Load fragment shaders
+async function loadFragmentShaders(fragmentList) {
+    if (selectS) {
+        selectS.innerHTML = ''; // Clear existing options
+        fragmentList.forEach(name => {
+            const opt = document.createElement("option");
+            opt.value = name;
+            opt.textContent = name.charAt(0).toUpperCase() + name.slice(1);
+            selectS.appendChild(opt);
+        });
     }
-    const frag = await loadText(`shaders/${name}.frag`);
+    return fragmentList;
+}
+
+// Load vertex shaders
+async function loadVertexShaders(vertexList) {
+    if (selectV) {
+        selectV.innerHTML = ''; // Clear existing options
+        vertexList.forEach(name => {
+            const opt = document.createElement("option");
+            opt.value = name;
+            opt.textContent = name.charAt(0).toUpperCase() + name.slice(1);
+            selectV.appendChild(opt);
+        });
+    }
+    return vertexList;
+}
+
+// Load meshes
+async function loadMeshes(meshList) {
+    meshes = meshList;
+    if (selectM) {
+        selectM.innerHTML = ''; // Clear existing options
+        meshList.forEach(mesh => {
+            const opt = document.createElement("option");
+            opt.value = mesh.id;
+            opt.textContent = mesh.name;
+            selectM.appendChild(opt);
+        });
+    }
+    return meshList;
+}
+
+// Load experiences
+async function loadExperiences(experienceList) {
+    experiences = experienceList;
+    if (selectE) {
+        selectE.innerHTML = ''; // Clear existing options
+        experienceList.forEach(exp => {
+            const opt = document.createElement("option");
+            opt.value = exp.id;
+            opt.textContent = exp.name;
+            selectE.appendChild(opt);
+        });
+    }
+    return experienceList;
+}
+
+// Create a mesh based on configuration
+function createMesh(meshId) {
+    const meshConfig = meshes.find(m => m.id === meshId);
+    if (!meshConfig) return new THREE.SphereGeometry(1, 32, 32); // Default fallback
+    
+    // Create geometry based on configuration
+    const geometryType = meshConfig.geometry;
+    const params = meshConfig.parameters || [];
+    
+    let geometry;
+    switch(geometryType) {
+        case "SphereGeometry":
+            geometry = new THREE.SphereGeometry(...params);
+            break;
+        case "BoxGeometry":
+            geometry = new THREE.BoxGeometry(...params);
+            break;
+        case "TorusGeometry":
+            geometry = new THREE.TorusGeometry(...params);
+            break;
+        case "TorusKnotGeometry":
+            geometry = new THREE.TorusKnotGeometry(...params);
+            break;
+        case "PlaneGeometry":
+            geometry = new THREE.PlaneGeometry(...params);
+            break;
+        case "ConeGeometry":
+            geometry = new THREE.ConeGeometry(...params);
+            break;
+        case "CylinderGeometry":
+            geometry = new THREE.CylinderGeometry(...params);
+            break;
+        case "OctahedronGeometry":
+            geometry = new THREE.OctahedronGeometry(...params);
+            break;
+        case "IcosahedronGeometry":
+            geometry = new THREE.IcosahedronGeometry(...params);
+            break;
+        default:
+            geometry = new THREE.SphereGeometry(1, 32, 32);
+    }
+    
+    return geometry;
+}
+
+// Create a material with the specified shaders
+async function createMaterial(fragmentShader, vertexShader) {
+    const fragShaderText = await loadText(`shaders/${fragmentShader}`);
+    const vertShaderText = await loadText(`shaders/${vertexShader}`);
+    
     return new THREE.ShaderMaterial({
-        vertexShader: commonVertexShader,
-        fragmentShader: frag,
+        vertexShader: vertShaderText,
+        fragmentShader: fragShaderText,
         uniforms: {
             u_time: { value: 1.0 },
             u_resolution: { value: new THREE.Vector2(canvas.clientWidth, canvas.clientHeight) }
-        }
+        },
+        side: THREE.DoubleSide // Ensure both sides are visible
     });
+}
+
+// Load an experience by ID
+async function loadExperience(experienceId) {
+    const experience = experiences.find(e => e.id === experienceId);
+    if (!experience) {
+        console.error(`Experience ${experienceId} not found`);
+        return;
+    }
+    
+    currentExperience = experience;
+    
+    // Update UI to reflect the current experience
+    if (selectS) selectS.value = experience.fragmentShader.split('/').pop().replace('.frag', '');
+    if (selectV) selectV.value = experience.vertexShader.split('/').pop().replace('.vert', '');
+    if (selectM) selectM.value = experience.defaultMesh;
+    
+    // Update description
+    const descriptionElement = document.getElementById('experienceDescription');
+    if (descriptionElement && experience.description) {
+        descriptionElement.textContent = experience.description;
+    }
+    
+    // Create material with the specified shaders
+    const material = await createMaterial(experience.fragmentShader, experience.vertexShader);
+    
+    // Create mesh with the default geometry
+    const geometry = createMesh(experience.defaultMesh);
+    
+    // Update the scene
+    updateScene(geometry, material);
+}
+
+// Update the scene with new geometry and material
+function updateScene(geometry, material) {
+    if (mesh) {
+        // Clean up previous resources
+        scene.remove(mesh);
+        if (mesh.geometry) mesh.geometry.dispose();
+        if (mesh.material) mesh.material.dispose();
+    }
+    
+    // Create new mesh
+    mesh = new THREE.Mesh(geometry, material);
+    scene.add(mesh);
+    currentMaterial = material;
+    
+    // Reset camera position for better viewing
+    camera.position.set(0, 0, 3);
+    camera.lookAt(0, 0, 0);
+}
+
+// Create custom material from selected shaders
+async function createCustomMaterial() {
+    const fragmentPath = `fragment/${selectS.value}.frag`;
+    const vertexPath = `vertex/${selectV.value}.vert`;
+    
+    return await createMaterial(fragmentPath, vertexPath);
+}
+
+// Update mesh geometry
+function updateMeshGeometry(meshId) {
+    const geometry = createMesh(meshId);
+    if (!geometry) return;
+    
+    // Keep the current material but update the geometry
+    if (mesh && mesh.material) {
+        const material = mesh.material;
+        updateScene(geometry, material);
+    }
 }
 
 async function init() {
@@ -240,31 +427,95 @@ async function init() {
     camera = new THREE.PerspectiveCamera(70, canvas.clientWidth / canvas.clientHeight, 0.1, 100);
     renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
     renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+    
+    // Load all shader resources
+    try {
+        const config = await loadShadersConfig();
+        await loadFragmentShaders(config.fragmentShaders);
+        await loadVertexShaders(config.vertexShaders);
+        await loadMeshes(config.meshes);
+        await loadExperiences(config.experiences);
+        
+        // Set up event listeners for dropdowns
+        if (selectE) {
+            selectE.addEventListener("change", () => {
+                loadExperience(selectE.value);
+            });
+        }
+        
+        if (selectS && selectV) {
+            // For custom shader combinations
+            const updateShaders = async () => {
+                const material = await createCustomMaterial();
+                if (mesh) {
+                    mesh.material.dispose();
+                    mesh.material = material;
+                    currentMaterial = material;
+                }
+            };
+            
+            selectS.addEventListener("change", updateShaders);
+            selectV.addEventListener("change", updateShaders);
+        }
+        
+        if (selectM) {
+            // For changing mesh type
+            selectM.addEventListener("change", () => {
+                updateMeshGeometry(selectM.value);
+            });
+        }
+        
+        // Setup control buttons
+        if (resetViewBtn) {
+            resetViewBtn.addEventListener("click", () => {
+                camera.position.set(0, 0, 3);
+                camera.lookAt(0, 0, 0);
+            });
+        }
+        
+        if (fullscreenBtn) {
+            fullscreenBtn.addEventListener("click", () => {
+                if (canvas.requestFullscreen) {
+                    canvas.requestFullscreen();
+                } else if (canvas.webkitRequestFullscreen) {
+                    canvas.webkitRequestFullscreen();
+                }
+            });
+        }
+        
+        if (infoBtn) {
+            infoBtn.addEventListener("click", () => {
+                const fragmentName = selectS.value;
+                const vertexName = selectV.value;
+                alert(`Current Shader Information:
+Fragment Shader: ${fragmentName}
+Vertex Shader: ${vertexName}
+Uniforms: u_time, u_resolution`);
+            });
+        }
 
-    const geometry = new THREE.SphereGeometry(1, 64, 64);
-    currentMaterial = await createMaterial("default");
-    mesh = new THREE.Mesh(geometry, currentMaterial);
-    scene.add(mesh);
-
-    // Populate dropdown
-    const names = await loadShadersList();
-    if (selectS) {
-        selectS.value = "default";
-        selectS.addEventListener("change", async () => {
-            const newMat = await createMaterial(selectS.value);
-            mesh.material.dispose();
-            mesh.material = newMat;
-            currentMaterial = newMat;
-        });
+        // Load default experience or create default setup
+        if (experiences.length > 0) {
+            await loadExperience(experiences[0].id);
+        } else {
+            // Fallback to simple default setup
+            const geometry = new THREE.SphereGeometry(1, 64, 64);
+            const fragmentPath = "fragment/rainbow.frag";
+            const vertexPath = "vertex/standard.vert";
+            const material = await createMaterial(fragmentPath, vertexPath);
+            updateScene(geometry, material);
+        }
+    } catch (error) {
+        console.error("Failed to initialize shader playground:", error);
     }
 
     // Add Light
-    const light = new THREE.DirectionalLight(0xff00ff, 1);
+    const light = new THREE.DirectionalLight(0xffffff, 1);
     light.position.set(10, 20, 10);
     scene.add(light);
-
-    camera.position.set(0, 0, 3);
-    camera.lookAt(0, 0, 0);
+    
+    const ambientLight = new THREE.AmbientLight(0x404040);
+    scene.add(ambientLight);
 
     animate();
 }

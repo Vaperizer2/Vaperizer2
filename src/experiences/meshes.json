@@ -1,0 +1,56 @@
+[
+  {
+    "id": "sphere",
+    "name": "Sphere",
+    "geometry": "SphereGeometry",
+    "parameters": [1, 64, 64]
+  },
+  {
+    "id": "cube",
+    "name": "Cube",
+    "geometry": "BoxGeometry",
+    "parameters": [1.5, 1.5, 1.5, 2, 2, 2]
+  },
+  {
+    "id": "torus",
+    "name": "Torus",
+    "geometry": "TorusGeometry",
+    "parameters": [1, 0.3, 30, 30]
+  },
+  {
+    "id": "knot",
+    "name": "Torus Knot",
+    "geometry": "TorusKnotGeometry",
+    "parameters": [0.8, 0.35, 100, 32]
+  },
+  {
+    "id": "plane",
+    "name": "Plane",
+    "geometry": "PlaneGeometry", 
+    "parameters": [2, 2, 32, 32]
+  },
+  {
+    "id": "cone",
+    "name": "Cone",
+    "geometry": "ConeGeometry",
+    "parameters": [1, 2, 32]
+  },
+  {
+    "id": "cylinder",
+    "name": "Cylinder",
+    "geometry": "CylinderGeometry",
+    "parameters": [0.5, 0.5, 2, 32]
+  },
+  {
+    "id": "octahedron",
+    "name": "Octahedron",
+    "geometry": "OctahedronGeometry",
+    "parameters": [1, 0]
+  },
+  {
+    "id": "icosahedron",
+    "name": "Icosahedron",
+    "geometry": "IcosahedronGeometry",
+    "parameters": [1, 0]
+  }
+]

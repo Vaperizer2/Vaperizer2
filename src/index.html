@@ -427,10 +427,28 @@
                     </p>
                     
                     <div class="bg-base-200 p-6 rounded-lg">
+                        <div class="mb-6">
+                            <h3 class="text-xl font-semibold mb-4">Experience Selector</h3>
+                            <div class="form-control mb-2">
+                                <label class="label">
+                                    <span class="label-text">Select Experience</span>
+                                </label>
+                                <select id="experienceSelect" class="select select-bordered">
+                                    <!-- Options populated by JavaScript -->
+                                </select>
+                            </div>
+                            <p id="experienceDescription" class="text-sm mt-2 text-base-content/80 italic">
+                                Select an experience to see its description
+                            </p>
+                        </div>
+                        
+                        <div class="divider"></div>
+                        
+                        <h3 class="text-xl font-semibold mb-4">Custom Editor</h3>
                         <div class="flex flex-wrap gap-4 mb-4">
                             <div class="form-control">
                                 <label class="label">
-                                    <span class="label-text">Shader</span>
+                                    <span class="label-text">Fragment Shader</span>
                                 </label>
                                 <select id="shaderSelect" class="select select-bordered select-sm">
                                     <!-- Options populated by JavaScript -->
@@ -438,18 +456,18 @@
                             </div>
                             <div class="form-control">
                                 <label class="label">
-                                    <span class="label-text">Vertex</span>
+                                    <span class="label-text">Vertex Shader</span>
                                 </label>
                                 <select id="vertexSelect" class="select select-bordered select-sm">
-                                    <!-- Future vertex shader options -->
+                                    <!-- Options populated by JavaScript -->
                                 </select>
                             </div>
                             <div class="form-control">
                                 <label class="label">
-                                    <span class="label-text">Mesh</span>
+                                    <span class="label-text">Mesh Type</span>
                                 </label>
                                 <select id="meshSelect" class="select select-bordered select-sm">
-                                    <!-- Future mesh options -->
+                                    <!-- Options populated by JavaScript -->
                                 </select>
                             </div>
                         </div>
@@ -459,11 +477,27 @@
                             <div class="absolute top-2 right-2">
                                 <span class="badge badge-primary badge-sm">WebGL + Three.js</span>
                             </div>
+                            <div class="absolute bottom-2 left-2 bg-base-300/80 p-2 rounded">
+                                <button id="fullscreenBtn" class="btn btn-sm btn-circle">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
                         </div>
                         
-                        <div class="mt-4 text-sm text-base-content/60">
-                            <p><i class="fas fa-info-circle mr-1"></i> 
-                            This playground demonstrates real-time fragment shaders with dynamic uniforms and interactive controls.</p>
+                        <div class="mt-4 grid md:grid-cols-2 gap-4">
+                            <div class="text-sm text-base-content/80">
+                                <p><i class="fas fa-info-circle mr-1"></i> 
+                                This playground demonstrates real-time GLSL shaders with customizable vertex and fragment programs.
+                                </p>
+                            </div>
+                            <div class="flex justify-end gap-2">
+                                <button id="resetViewBtn" class="btn btn-sm btn-outline">
+                                    <i class="fas fa-sync-alt mr-1"></i>Reset View
+                                </button>
+                                <button id="infoBtn" class="btn btn-sm btn-outline">
+                                    <i class="fas fa-question-circle mr-1"></i>Shader Info
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
