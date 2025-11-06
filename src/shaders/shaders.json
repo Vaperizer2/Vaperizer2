@@ -1,5 +1,138 @@
-[
-  "default",
-  "wave",
-  "colorShift"
-]
+{
+  "fragmentShaders": [
+    "rainbow",
+    "wave",
+    "colorShift",
+    "grid",
+    "normals",
+    "fire",
+    "water"
+  ],
+  "vertexShaders": [
+    "standard",
+    "wave",
+    "pulse",
+    "ripple"
+  ],
+  "meshes": [
+    {
+      "id": "sphere",
+      "name": "Sphere",
+      "geometry": "SphereGeometry",
+      "parameters": [1, 64, 64]
+    },
+    {
+      "id": "cube",
+      "name": "Cube",
+      "geometry": "BoxGeometry",
+      "parameters": [1.5, 1.5, 1.5, 2, 2, 2]
+    },
+    {
+      "id": "torus",
+      "name": "Torus",
+      "geometry": "TorusGeometry",
+      "parameters": [1, 0.3, 30, 30]
+    },
+    {
+      "id": "knot",
+      "name": "Torus Knot",
+      "geometry": "TorusKnotGeometry",
+      "parameters": [0.8, 0.35, 100, 32]
+    },
+    {
+      "id": "plane",
+      "name": "Plane",
+      "geometry": "PlaneGeometry",
+      "parameters": [2, 2, 32, 32]
+    },
+    {
+      "id": "cone",
+      "name": "Cone",
+      "geometry": "ConeGeometry",
+      "parameters": [1, 2, 32]
+    },
+    {
+      "id": "cylinder",
+      "name": "Cylinder",
+      "geometry": "CylinderGeometry",
+      "parameters": [0.5, 0.5, 2, 32]
+    },
+    {
+      "id": "octahedron",
+      "name": "Octahedron",
+      "geometry": "OctahedronGeometry",
+      "parameters": [1, 0]
+    },
+    {
+      "id": "icosahedron",
+      "name": "Icosahedron",
+      "geometry": "IcosahedronGeometry",
+      "parameters": [1, 0]
+    }
+  ],
+  "experiences": [
+    {
+      "id": "rainbow",
+      "name": "Rainbow Waves",
+      "fragmentShader": "fragment/rainbow.frag",
+      "vertexShader": "vertex/wave.vert",
+      "meshes": ["sphere", "torus", "cube"],
+      "defaultMesh": "sphere",
+      "description": "Colorful rainbow patterns with wave animation"
+    },
+    {
+      "id": "water",
+      "name": "Water Simulation",
+      "fragmentShader": "fragment/water.frag",
+      "vertexShader": "vertex/ripple.vert",
+      "meshes": ["plane", "sphere", "icosahedron"],
+      "defaultMesh": "plane",
+      "description": "Interactive water ripple simulation with depth effects"
+    },
+    {
+      "id": "fire",
+      "name": "Fire Effect",
+      "fragmentShader": "fragment/fire.frag",
+      "vertexShader": "vertex/standard.vert",
+      "meshes": ["sphere", "cone", "cylinder"],
+      "defaultMesh": "cone",
+      "description": "Dynamic fire simulation with realistic color gradient"
+    },
+    {
+      "id": "normals",
+      "name": "Normal Visualization",
+      "fragmentShader": "fragment/normals.frag",
+      "vertexShader": "vertex/standard.vert",
+      "meshes": ["sphere", "torus", "knot"],
+      "defaultMesh": "knot",
+      "description": "Visualize surface normals with color mapping"
+    },
+    {
+      "id": "grid",
+      "name": "Animated Grid",
+      "fragmentShader": "fragment/grid.frag",
+      "vertexShader": "vertex/pulse.vert",
+      "meshes": ["plane", "sphere", "cube"],
+      "defaultMesh": "sphere",
+      "description": "Pulsating grid pattern with animated lines"
+    },
+    {
+      "id": "colorShift",
+      "name": "Color Cycling",
+      "fragmentShader": "fragment/colorShift.frag",
+      "vertexShader": "vertex/standard.vert",
+      "meshes": ["sphere", "torus", "octahedron"],
+      "defaultMesh": "octahedron",
+      "description": "Smoothly shifting color patterns"
+    },
+    {
+      "id": "wave",
+      "name": "Wave Effect",
+      "fragmentShader": "fragment/wave.frag",
+      "vertexShader": "vertex/wave.vert",
+      "meshes": ["plane", "sphere", "cylinder"],
+      "defaultMesh": "sphere",
+      "description": "Dynamic wave patterns with animated distortion"
+    }
+  ]
+}
