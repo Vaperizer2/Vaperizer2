@@ -1,5 +1,8 @@
 <!-- Vaperizer2's Special GitHub Profile README -->
 
+> 🚧 **Under construction**
+> This profile README is due for a refresh. Some information below may be outdated; I'll be reviewing, updating, and correcting it soon.
+
 <div align="center">
 
 # 👋 Hi, I'm Vaperizer2
